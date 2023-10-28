@@ -2,6 +2,9 @@ import { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions';
 import { Statistics } from './Statistics';
 import { Notification } from './Notification';
+import { Section } from './Section';
+import { ContenerDiv } from './App.styled';
+
 
 
 
@@ -37,24 +40,29 @@ export class App extends Component {
     
 
     return (
-      <div>
-        <h1>Please leave feedback</h1>
-        <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
-          onLeaveFeedback={this.handleFeedback}
-        />
-        <h2>Statistics</h2> 
-        {getFeedback ? (
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
-          /> ) :(
-        <Notification message ="There is no feedback"/>
-        )}
-      </div>
+      <ContenerDiv>
+        <Section title="Feedback">
+          <h1>Please leave feedback</h1>
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={this.handleFeedback}
+          />
+        </Section>
+
+        <Section title="Statistics">
+          {getFeedback ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
+      </ContenerDiv>
     );
   }
 }
