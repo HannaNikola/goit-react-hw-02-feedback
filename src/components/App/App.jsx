@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { FeedbackOptions } from './FeedbackOptions';
-import { Statistics } from './Statistics';
-import { Notification } from './Notification';
-import { Section } from './Section';
+import { FeedbackOptions } from '../Feedback/FeedbackOptions';
+import { Statistics } from '../Statistic/Statistics';
+import { Notification } from '../Notification/Notification';
+import { Section } from '../Section/Section';
 import { ContenerDiv } from './App.styled';
 
 
@@ -17,7 +17,7 @@ export class App extends Component {
     bad: 0,
   };
 
-    handleFeedback = (type) => {
+  handleFeedback = (type) => {
     this.setState((prevState) => ({ [type]: prevState[type] + 1 }));
   };
 
@@ -25,19 +25,19 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
- 
+
   positivePercentage = () => {
-          const total = this.countTotalFeedback();
-          return total ? (this.state.good / total) * 100 : 0;
+    const total = this.countTotalFeedback();
+    return total ? (this.state.good / total) * 100 : 0;
   }
-  
+
 
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const positivePercentage = this.positivePercentage();
     const getFeedback = total > 0;
-    
+
 
     return (
       <ContenerDiv>
